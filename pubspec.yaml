@@ -1,0 +1,62 @@
+name: anti_kidnap_app
+description: A low-cost, sound-triggered anti-kidnapping safety application (FYP project).
+publish_to: 'none'
+version: 0.2.0
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI
+  cupertino_icons: ^1.0.6
+
+  # Local storage (emergency contacts, settings)
+  shared_preferences: ^2.2.2
+
+  # Audio recording / raw PCM streaming for the sound trigger
+  record: ^7.1.1
+
+  # Native SMS sending (uses Android's own SmsManager under the hood).
+  # NOTE: switched from the discontinued `telephony` package.
+  another_telephony: ^0.4.1
+
+  # GPS location
+  geolocator: ^14.0.3
+
+  # Runtime permission requests (mic, location, SMS, notifications)
+  permission_handler: ^11.3.0
+
+  # Background/foreground service so monitoring survives backgrounding
+  flutter_foreground_task: ^6.5.0
+
+  # On-device ML inference (YAMNet sound classifier)
+  tflite_flutter: ^0.11.0
+
+  # Path helper for saving audio evidence clips locally
+  path_provider: ^2.1.2
+
+  # UUID generation for contact/incident IDs
+  uuid: ^4.3.3
+
+  # Detects whether the device currently has internet connectivity,
+  # used to decide between the Firestore path and the SMS fallback path.
+  connectivity_plus: ^6.0.1
+
+  # OPTIONAL cloud backend (Firebase). Uncomment once you have run
+  # `flutterfire configure` for your own Firebase project.
+  # firebase_core: ^2.27.0
+  # cloud_firestore: ^4.15.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/models/yamnet.tflite
+    - assets/models/yamnet_class_map.csv
